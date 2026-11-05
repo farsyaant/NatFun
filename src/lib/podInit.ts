@@ -18,6 +18,7 @@ export interface UserPodPaths {
   interactions: string;
   activitiesLikes: string;
   activitiesComments: string;
+  social: string;
   following: string;
   inbox: string;
   sent: string;
@@ -33,6 +34,7 @@ export function userPodPaths(storage: string): UserPodPaths {
     interactions: `${r}interactions/`,
     activitiesLikes: `${r}activities/likes/`,
     activitiesComments: `${r}activities/comments/`,
+    social: `${r}social/`,
     following: `${r}social/following.jsonld`,
     inbox: `${r}inbox/`,
     sent: `${r}messages/sent/`,
@@ -62,6 +64,7 @@ export async function initUserPod(webId: string, storage: string): Promise<boole
     p.interactions,
     p.activitiesLikes,
     p.activitiesComments,
+    p.social,
     p.inbox,
     p.sent,
     p.familyAcceptances,
@@ -80,6 +83,9 @@ export async function initUserPod(webId: string, storage: string): Promise<boole
     // activities: authenticated read, owner full
     [p.activitiesLikes, { read: "auth", writeOwner: true, defaultForNew: true }],
     [p.activitiesComments, { read: "auth", writeOwner: true, defaultForNew: true }],
+    // SOC-03: follow list harus terbaca pengguna lain agar mutual bisa dihitung
+    // (FR-SOC-03: "compute this at display time by reading both lists")
+    [p.social, { read: "auth", writeOwner: true, defaultForNew: true }],
     // inbox: owner read/control, authenticated APPEND only (tanpa read!)
     [p.inbox, { append: "auth", writeOwner: true, defaultForNew: true }],
     // sent: owner only

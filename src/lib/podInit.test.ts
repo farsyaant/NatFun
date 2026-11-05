@@ -40,4 +40,21 @@ describe("podInit — owner ACL", () => {
     expect(bodies.join("\n")).toContain(`acl:agent <${adminWebId}>`);
     expect(bodies.join("\n")).not.toContain("<https://admin.example/profile/card>");
   });
+
+  it("SOC-03: container social/ ikut dibuat dan di-ACL read:auth (mutual butuh baca lintas Pod)", async () => {
+    const webId = "https://alice.example/profile/card#me";
+    await initUserPod(webId, "https://alice.example/");
+    // container social/ dibuat (GET/PUT)
+    const urls = fetchMock.mock.calls.map(([u]) => String(u));
+    expect(urls).toContain("https://alice.example/natfun/social/");
+    // ACL social/: authenticated read + default (untuk following.jsonld)
+    const socialAcl = fetchMock.mock.calls.find(
+      ([u, init]) => String(u) === "https://alice.example/natfun/social/.acl" && init?.method === "PUT",
+    );
+    expect(socialAcl).toBeDefined();
+    const body = String(socialAcl?.[1]?.body);
+    expect(body).toContain("acl:agentClass acl:AuthenticatedAgent");
+    expect(body).toContain("acl:mode acl:Read");
+    expect(body).toContain(`acl:agent <${webId}>`);
+  });
 });

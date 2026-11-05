@@ -19,10 +19,21 @@ vi.mock("@/lib/profile", () => ({
   displayName: vi.fn((p) => p?.name ?? p?.webId ?? "?"),
   storageRootOf: vi.fn(() => "https://admin.example/"),
 }));
+vi.mock("@/lib/social", () => ({
+  followUser: vi.fn(),
+  unfollowUser: vi.fn(),
+  isFollowing: vi.fn(),
+}));
+vi.mock("@/lib/social", () => ({
+  followUser: vi.fn(),
+  unfollowUser: vi.fn(),
+  isFollowing: vi.fn(),
+}));
 
 import { useAuth } from "@/context/AuthContext";
 import { commentEntry, removeInteractionRef, verifiedInteractions, deleteStaleRefs } from "@/lib/interactions";
 import { fetchProfile } from "@/lib/profile";
+import { followUser, isFollowing } from "@/lib/social";
 import EntryDetail from "@/pages/EntryDetail";
 import { fakeAppState, fakePaths } from "@/test/helpers";
 
@@ -32,6 +43,8 @@ const removeRefMock = removeInteractionRef as unknown as ReturnType<typeof vi.fn
 const verifiedMock = verifiedInteractions as unknown as ReturnType<typeof vi.fn>;
 const deleteStaleRefsMock = deleteStaleRefs as unknown as ReturnType<typeof vi.fn>;
 const fetchProfileMock = fetchProfile as unknown as ReturnType<typeof vi.fn>;
+const followUserMock = followUser as unknown as ReturnType<typeof vi.fn>;
+const isFollowingMock = isFollowing as unknown as ReturnType<typeof vi.fn>;
 
 const OBS_DOC = {
   "dwc:vernacularName": "Komodo",
@@ -206,5 +219,105 @@ describe("EntryDetail — komentar", () => {
     renderDetail();
     await waitFor(() => expect(screen.getByText("Komodo")).toBeInTheDocument());
     expect(deleteStaleRefsMock).not.toHaveBeenCalled();
+  });
+});
+describe("SOC-01 — ikuti pemilik entri dari halaman entri", () => {
+  const OWNER_BOB = "https://bob.example/profile/card#me";
+
+  beforeEach(() => {
+    isFollowingMock.mockResolvedValue(false);
+    followUserMock.mockResolvedValue(undefined);
+  });
+
+  function stateWithOwner(ownerWebId: string) {
+    return fakeAppState({
+      role: "Parent",
+      officialRoot: "https://official.example/natfun/",
+      catalog: {
+        "@context": {},
+        "@type": "Collection",
+        items: [
+          {
+            id: "xyz",
+            source: "community",
+            observationUrl: "https://bob.example/obs/xyz.jsonld",
+            ownerWebId,
+            localName: "Komodo",
+            scientificName: "Varanus komodoensis",
+            kingdom: "Animalia",
+            taxonClass: "Reptilia",
+            family: "Varanidae",
+            province: "Nusa Tenggara Timur",
+            habitat: "Sabana",
+            conservationStatus: "EN",
+            thumbnailUrl: "",
+            approvedAt: "",
+          },
+        ],
+      },
+      podPaths: fakePaths("alice.example"),
+    });
+  }
+
+  it("entri milik Parent lain → tombol Ikuti tampil; klik memanggil followUser dengan officialRoot", async () => {
+    const { fetchObservationDocument } = await import("@/lib/catalog");
+    (fetchObservationDocument as unknown as ReturnType<typeof vi.fn>).mockResolvedValue({
+      ...OBS_DOC,
+      "dcterms:creator": { "@id": OWNER_BOB },
+    });
+    useAuthMock.mockReturnValue({ state: stateWithOwner(OWNER_BOB) });
+    renderDetail();
+    const btn = await screen.findByRole("button", { name: /Ikuti pemilik/ });
+    await userEvent.click(btn);
+    await waitFor(() =>
+      expect(followUserMock).toHaveBeenCalledWith(
+        fakePaths("alice.example"),
+        "https://alice.example/profile/card#me",
+        OWNER_BOB,
+        "https://official.example/natfun/",
+      ),
+    );
+    await waitFor(() => expect(screen.getByText(/Mengikuti pemilik/)).toBeInTheDocument());
+  });
+
+  it("entri milik sendiri → tidak ada tombol ikuti", async () => {
+    const { fetchObservationDocument } = await import("@/lib/catalog");
+    (fetchObservationDocument as unknown as ReturnType<typeof vi.fn>).mockResolvedValue({
+      ...OBS_DOC,
+      "dcterms:creator": { "@id": "https://alice.example/profile/card#me" },
+    });
+    useAuthMock.mockReturnValue({
+      state: stateWithOwner("https://alice.example/profile/card#me"),
+    });
+    renderDetail();
+    await waitFor(() => expect(screen.getByText("Komodo")).toBeInTheDocument());
+    expect(screen.queryByRole("button", { name: /Ikuti pemilik/ })).not.toBeInTheDocument();
+  });
+
+  it("entri milik Admin → tidak ada tombol ikuti (SOC-04: Admin bukan Parent)", async () => {
+    const { appConfig } = await import("@/config/appConfig");
+    const adminWebId = appConfig.adminWebId;
+    const { fetchObservationDocument } = await import("@/lib/catalog");
+    (fetchObservationDocument as unknown as ReturnType<typeof vi.fn>).mockResolvedValue({
+      ...OBS_DOC,
+      "dcterms:creator": { "@id": adminWebId },
+    });
+    useAuthMock.mockReturnValue({ state: stateWithOwner(adminWebId) });
+    renderDetail();
+    await waitFor(() => expect(screen.getByText("Komodo")).toBeInTheDocument());
+    expect(screen.queryByRole("button", { name: /Ikuti pemilik/ })).not.toBeInTheDocument();
+  });
+
+  it("gagal follow → error tampil (role=alert)", async () => {
+    const { fetchObservationDocument } = await import("@/lib/catalog");
+    (fetchObservationDocument as unknown as ReturnType<typeof vi.fn>).mockResolvedValue({
+      ...OBS_DOC,
+      "dcterms:creator": { "@id": OWNER_BOB },
+    });
+    followUserMock.mockRejectedValue(new Error("Tidak bisa mengikuti: pengguna ini berperan Child."));
+    useAuthMock.mockReturnValue({ state: stateWithOwner(OWNER_BOB) });
+    renderDetail();
+    await userEvent.click(await screen.findByRole("button", { name: /Ikuti pemilik/ }));
+    await waitFor(() => expect(screen.getByRole("alert")).toBeInTheDocument());
   });
 });

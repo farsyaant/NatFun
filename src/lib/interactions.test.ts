@@ -30,6 +30,7 @@ function pathsFor(host: string): UserPodPaths {
     interactions: `${r}interactions/`,
     activitiesLikes: `${r}activities/likes/`,
     activitiesComments: `${r}activities/comments/`,
+    social: `${r}social/`,
     following: `${r}social/following.jsonld`,
     inbox: `${r}inbox/`,
     sent: `${r}messages/sent/`,

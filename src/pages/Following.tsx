@@ -45,9 +45,9 @@ export default function Following() {
 
   const follow = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!state?.podPaths || !followInput.trim()) return;
+    if (!state?.podPaths || !state.officialRoot || !followInput.trim()) return;
     try {
-      await followUser(state.podPaths, state.profile.webId, followInput.trim());
+      await followUser(state.podPaths, state.profile.webId, followInput.trim(), state.officialRoot);
       setFollowInput("");
       setError(null);
       await load();

@@ -1,5 +1,6 @@
 import { readJson, putJson } from "@/lib/ldp";
-import { fetchProfileCached } from "@/lib/profile";
+import { fetchProfileCached, storageRootOf } from "@/lib/profile";
+import { resolveRole } from "@/lib/appState";
 import type { UserPodPaths } from "@/lib/podInit";
 
 export interface FollowItem {
@@ -27,16 +28,33 @@ export async function readFollowingList(paths: UserPodPaths): Promise<FollowingL
   };
 }
 
+/** SOC-04: target follow harus resolves sebagai Parent (Child tidak boleh
+ *  diikuti, Admin juga bukan Parent). Validasi di level aplikasi (FR-ROLE-07). */
 export async function followUser(
   paths: UserPodPaths,
   actorWebId: string,
   targetWebId: string,
+  officialRoot: string,
 ): Promise<void> {
+  const prof = await fetchProfileCached(targetWebId);
+  const targetStorage = storageRootOf(targetWebId, prof.storage);
+  const role = await resolveRole(targetWebId, officialRoot, targetStorage);
+  if (role !== "Parent") {
+    throw new Error(
+      `Tidak bisa mengikuti: pengguna ini berperan ${role}. Hanya Parent yang dapat diikuti (FR-SOC-04).`,
+    );
+  }
   const list = await readFollowingList(paths);
   if (list.items.some((i) => i.object === targetWebId)) return;
   list.items.push({ object: targetWebId, published: new Date().toISOString() });
   list.actor = actorWebId;
   await putJson(paths.following, list);
+}
+
+/** SOC-01: apakah aktor sudah mengikuti target? (untuk UI halaman entri) */
+export async function isFollowing(paths: UserPodPaths, targetWebId: string): Promise<boolean> {
+  const list = await readFollowingList(paths);
+  return list.items.some((i) => String(i.object ?? "").split("#")[0] === targetWebId.split("#")[0]);
 }
 
 export async function unfollowUser(paths: UserPodPaths, targetWebId: string): Promise<void> {

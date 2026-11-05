@@ -14,8 +14,9 @@ import {
   type InteractionItem,
 } from "@/lib/interactions";
 import { fetchProfile, displayName, storageRootOf } from "@/lib/profile";
+import { followUser, unfollowUser, isFollowing } from "@/lib/social";
 import { natfunRoot } from "@/lib/podInit";
-import { licenses } from "@/config/appConfig";
+import { appConfig, licenses } from "@/config/appConfig";
 import StatusBadge from "@/components/StatusBadge";
 import type { UserPodPaths } from "@/lib/podInit";
 
@@ -34,6 +35,7 @@ export default function EntryDetail() {
   const [likes, setLikes] = useState<InteractionItem[]>([]);
   const [comments, setComments] = useState<InteractionItem[]>([]);
   const [myLikeUrl, setMyLikeUrl] = useState<string | null>(null);
+  const [followingOwner, setFollowingOwner] = useState<boolean | null>(null);
   const [commentText, setCommentText] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -85,6 +87,15 @@ export default function EntryDetail() {
       if (role === "Parent" && state.podPaths) {
         const mine = await findMyLike(state.profile.webId, state.podPaths, url);
         setMyLikeUrl(mine);
+        // SOC-01: status follow pemilik (hanya bila pemilik bukan diri sendiri
+        // dan bukan Admin — SOC-04: hanya Parent yang bisa diikuti)
+        const ownerBase = entry.ownerWebId.split("#")[0];
+        const adminBase = appConfig.adminWebId.split("#")[0];
+        if (ownerBase !== state.profile.webId.split("#")[0] && ownerBase !== adminBase) {
+          setFollowingOwner(await isFollowing(state.podPaths, entry.ownerWebId));
+        } else {
+          setFollowingOwner(null);
+        }
       }
     } catch {
       setError("Gagal memuat interaksi.");
@@ -130,6 +141,34 @@ export default function EntryDetail() {
       await load();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Gagal berkomentar.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const doFollowOwner = async () => {
+    if (!state?.podPaths || !state.officialRoot || !owner || busy) return;
+    setBusy(true);
+    try {
+      await followUser(state.podPaths, state.profile.webId, owner.profile.webId, state.officialRoot);
+      setFollowingOwner(true);
+      setError(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Gagal mengikuti.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const doUnfollowOwner = async () => {
+    if (!state?.podPaths || !owner || busy) return;
+    setBusy(true);
+    try {
+      await unfollowUser(state.podPaths, owner.profile.webId);
+      setFollowingOwner(false);
+      setError(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Gagal berhenti mengikuti.");
     } finally {
       setBusy(false);
     }
@@ -210,7 +249,7 @@ export default function EntryDetail() {
           </dl>
 
           {role === "Parent" && (
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               {myLikeUrl ? (
                 <button
                   disabled={busy}
@@ -227,6 +266,28 @@ export default function EntryDetail() {
                 >
                   🤍 Suka ({likes.length})
                 </button>
+              )}
+              {/* SOC-01: ikuti pemilik entri (FR-SOC-01: discoverable through
+                  catalog entry owners) — disembunyikan untuk entri sendiri dan
+                  entri milik Admin (SOC-04: hanya Parent yang bisa diikuti) */}
+              {owner && followingOwner !== null && (
+                followingOwner ? (
+                  <button
+                    disabled={busy}
+                    onClick={doUnfollowOwner}
+                    className="rounded-full bg-stone-100 px-4 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-200"
+                  >
+                    👤 Mengikuti pemilik — berhenti
+                  </button>
+                ) : (
+                  <button
+                    disabled={busy}
+                    onClick={doFollowOwner}
+                    className="rounded-full border border-stone-300 px-4 py-2 text-sm font-semibold text-stone-700 hover:bg-stone-100"
+                  >
+                    👤 Ikuti pemilik
+                  </button>
+                )
               )}
             </div>
           )}
