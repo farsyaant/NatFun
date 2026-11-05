@@ -47,7 +47,10 @@ export async function resolveRole(
     readDoc: (u: string) => readJson<Record<string, unknown>>(u),
   },
 ): Promise<Role> {
-  if (webId === appConfig.adminWebId) return "Admin";
+  // Bandingkan WebID DASAR (tanpa fragment) untuk cek Admin: nilai env bisa
+  // terpotong pada '#' (dotenv menganggap '#' awal komentar), sementara WebID
+  // sesi selalu menyertakan fragment (mis. .../profile/card#me).
+  if (webId.split("#")[0] === appConfig.adminWebId.split("#")[0]) return "Admin";
   try {
     const links = await deps.listUrls(`${officialRoot}child-links/`);
     for (const linkUrl of links) {

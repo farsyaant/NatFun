@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { resolveRole } from "@/lib/appState";
 
 function deps(links: Record<string, unknown | null>) {
@@ -10,6 +10,23 @@ function deps(links: Record<string, unknown | null>) {
 
 describe("resolveRole (FR-ROLE-01)", () => {
   const officialRoot = "https://official.example/natfun/";
+
+  it("WebID admin tanpa fragment (env terpotong '#') tetap dikenali Admin", async () => {
+    // Simulasi bug dotenv: VITE_NATFUN_ADMIN_WEBID terpotong pada '#me'
+    vi.stubEnv("VITE_NATFUN_ADMIN_WEBID", "https://charlie-admin.example/profile/card");
+    vi.resetModules();
+    const { resolveRole: rr } = await import("@/lib/appState");
+    const d = deps({});
+    const role = await rr(
+      "https://charlie-admin.example/profile/card#me",
+      officialRoot,
+      "https://charlie-admin.example/",
+      d,
+    );
+    expect(role).toBe("Admin");
+    vi.unstubAllEnvs();
+    vi.resetModules();
+  });
 
   it("link accepted di Official Pod → Child", async () => {
     const d = deps({

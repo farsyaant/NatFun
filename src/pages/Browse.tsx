@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { loadValidEntries } from "@/lib/catalog";
+import { loadValidEntries, clearObservationCache } from "@/lib/catalog";
 import { habitats, kingdoms, conservationStatuses } from "@/config/appConfig";
 import StatusBadge from "@/components/StatusBadge";
 import ProvinceMap from "@/components/ProvinceMap";
@@ -13,6 +13,8 @@ export default function Browse() {
   const [entries, setEntries] = useState<CatalogEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [unverified, setUnverified] = useState(0);
+  const [verifyRound, setVerifyRound] = useState(0);
 
   const [q, setQ] = useState("");
   const [province, setProvince] = useState<string | null>(null);
@@ -29,24 +31,50 @@ export default function Browse() {
       if (!state?.officialRoot) {
         // Official Pod tak terjangkau (konfigurasi/belum di-seed) — jangan biarkan
         // UI macet di "Memuat katalog…" selamanya; tampilkan pesan konfigurasi.
-        setLoading(false);
+        if (alive) {
+          setEntries([]);
+          setLoading(false);
+        }
         return;
       }
-      setLoading(true);
-      setError(null);
-      try {
-        const list = await loadValidEntries(state.catalog);
-        if (alive) setEntries(list);
-      } catch {
-        if (alive) setError("Gagal memuat katalog.");
-      } finally {
-        if (alive) setLoading(false);
+      // Poin 5: SEMUA entri index tampil INSTAN dari metadata index
+      // (thumbnailUrl sudah ada di index) — verifikasi berjalan di belakang.
+      if (alive) {
+        setEntries(state.catalog.items.map((e) => ({ ...e })));
+        setLoading(false);
+        setError(null);
       }
     })();
     return () => {
       alive = false;
     };
   }, [state?.officialRoot, state?.catalog]);
+
+  // Verifikasi latar belakang (FR-BRW-08): entri yang benar-benar hilang
+  // (404) disembunyikan; kegagalan sementara TIDAK menyembunyikan entri —
+  // dihitung dan ditawarkan tombol "Coba lagi".
+  useEffect(() => {
+    if (!state?.officialRoot) return;
+    let alive = true;
+    (async () => {
+      try {
+        const out = await loadValidEntries(state.catalog);
+        if (!alive) return;
+        setEntries((prev) => prev.filter((e) => !out.dead.includes(e.observationUrl)));
+        setUnverified(out.transient);
+      } catch {
+        if (alive) setError("Gagal memuat katalog.");
+      }
+    })();
+    return () => {
+      alive = false;
+    };
+  }, [state?.officialRoot, state?.catalog, verifyRound]);
+
+  const retryVerification = () => {
+    clearObservationCache();
+    setVerifyRound((n) => n + 1);
+  };
 
   // D6: saat halaman dibuka, segarkan katalog (throttle di AuthContext)
   useEffect(() => {
@@ -160,6 +188,20 @@ export default function Browse() {
       <section>
         {loading && <p className="text-stone-400">Memuat katalog…</p>}
         {error && <p className="rounded-lg bg-red-50 p-4 text-red-700">{error}</p>}
+        {!loading && unverified > 0 && (
+          <p role="status" className="mb-3 flex items-center justify-between gap-3 rounded-lg bg-amber-50 p-3 text-sm text-amber-800">
+            <span>
+              {unverified} entri belum terverifikasi (gangguan jaringan sementara) — datanya tetap
+              ditampilkan.
+            </span>
+            <button
+              onClick={retryVerification}
+              className="shrink-0 rounded-md border border-amber-300 px-3 py-1 font-semibold text-amber-800 hover:bg-amber-100"
+            >
+              Coba lagi
+            </button>
+          </p>
+        )}
         {!loading && !error && !state?.officialRoot && (
           <p className="rounded-lg bg-amber-50 p-4 text-amber-800">
             Official Pod tidak dapat diakses — katalog resmi tidak tersedia. Pastikan

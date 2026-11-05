@@ -1,5 +1,6 @@
 import { putJson, readJson, postJsonToContainer, jsonLdContext, listContainer, deleteResource } from "@/lib/ldp";
 import { fetch } from "@/lib/auth";
+import { fetchWithRetry } from "@/lib/fetchRetry";
 import { mapLimit } from "@/lib/concurrency";
 import { statusEnum, type CatalogIndex, type CatalogEntry } from "@/lib/vocab";
 
@@ -48,11 +49,26 @@ export async function fetchObservationDocument(
   if (running) return running;
   const p = (async () => {
     try {
-      const res = await fetch(url, { headers: { Accept: "application/ld+json, application/json" } });
-      if (!res.ok) return null;
-      const doc = (await res.json()) as Record<string, unknown>;
-      obsCache.set(url, { doc, at: Date.now() });
-      return doc;
+      // Retry kegagalan sementara (ECONNRESET/429/5xx) — bug katalog #1
+      const res = await fetchWithRetry(
+        url,
+        { headers: { Accept: "application/ld+json, application/json" } },
+        { fetchImpl: fetch, maxAttempts: 3 },
+      );
+      if (res.ok) {
+        const doc = (await res.json()) as Record<string, unknown>;
+        obsCache.set(url, { doc, at: Date.now() });
+        return doc;
+      }
+      // 404/410: resource memang hilang → dead (disembunyikan).
+      // 401/403: izin dicabut → dead juga (FR-DEC-04 / FR-BRW-08).
+      if (res.status === 404 || res.status === 410 || res.status === 401 || res.status === 403) {
+        return null;
+      }
+      // 429/5xx yang bertahan setelah retry = gagal SEMENTARA → throw agar
+      // entri TETAP ditampilkan (bukan disembunyikan) — kriteria "semua index
+      // tampil; hanya yang benar-benar hilang yang disembunyikan".
+      throw new Error(`HTTP ${res.status}`);
     } finally {
       obsInflight.delete(url);
     }
@@ -61,18 +77,44 @@ export async function fetchObservationDocument(
   return p;
 }
 
-export async function loadValidEntries(catalog: CatalogIndex): Promise<CatalogEntry[]> {
-  const valid: CatalogEntry[] = [];
-  await mapLimit(catalog.items, 6, async (entry) => {
+export interface CatalogLoadResult {
+  /** Entri yang observasinya terverifikasi ada — ditampilkan. */
+  verified: CatalogEntry[];
+  /** observationUrl yang benar-benar hilang (404/non-ok final) — disembunyikan. */
+  dead: string[];
+  /** Jumlah entri yang gagal diverifikasi karena kegagalan sementara
+   *  (ECONNRESET/429/5xx setelah retry) — TETAP ditampilkan, bukan disembunyikan. */
+  transient: number;
+}
+
+/** FR-BRW-08 + bug katalog #2/#3/#4: klasifikasi hasil verifikasi.
+ *  - urutan `verified` mengikuti urutan index (stabil antar muat);
+ *  - 404/non-ok final → `dead` (benar-benar hilang → disembunyikan);
+ *  - kegagalan sementara → `transient` (tetap tampil, bisa dicoba ulang). */
+export async function loadValidEntries(catalog: CatalogIndex): Promise<CatalogLoadResult> {
+  const results = await mapLimit(catalog.items, 6, async (entry) => {
     try {
       const obs = await fetchObservationDocument(entry.observationUrl);
-      if (!obs) return;
-      valid.push({ ...entry, thumbnailUrl: thumbnailUrlOf(entry.observationUrl, obs) || entry.thumbnailUrl });
-    } catch (e) {
-      console.warn(`[NatFun] Observasi dilewati (${entry.observationUrl}):`, e instanceof Error ? e.message : e);
+      if (!obs) return { status: "dead" as const, entry };
+      return {
+        status: "ok" as const,
+        entry: { ...entry, thumbnailUrl: thumbnailUrlOf(entry.observationUrl, obs) || entry.thumbnailUrl },
+      };
+    } catch {
+      return { status: "transient" as const, entry };
     }
   });
-  return valid;
+
+  const verified: CatalogEntry[] = [];
+  const dead: string[] = [];
+  let transient = 0;
+  // mapLimit mempertahankan urutan input → verified terurut sesuai index
+  for (const r of results) {
+    if (r.status === "ok") verified.push(r.entry);
+    else if (r.status === "dead") dead.push(r.entry.observationUrl);
+    else transient++;
+  }
+  return { verified, dead, transient };
 }
 
 /** FR-MOD-02 / FR-UPL-10: tambah entri ke catalog/index.jsonld (Admin). */

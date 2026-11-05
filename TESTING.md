@@ -152,7 +152,7 @@ Terstruktur per fitur (SRS §2.2 / PRD §6). Login dulu di `http://localhost:517
 
 1. **Buka DevTools (F12) → tab Console** — cari log `[NatFun]` yang menjelaskan container/ACL mana yang gagal.
 2. **Tab Network** — cari request merah (403/404/500) saat redirect balik dari IdP.
-3. Pastikan `.env.local` berisi `VITE_NATFUN_ADMIN_WEBID=https://natfun.solidcommunity.net/profile/card#me` lalu **restart** dev server (env hanya dibaca saat start).
+3. Pastikan `.env.local` berisi `VITE_NATFUN_ADMIN_WEBID="https://natfun.solidcommunity.net/profile/card#me"` — **wajib dikutip** (tanpa kutip, `#` dianggap komentar dan nilai terpotong jadi `.../profile/card`, peran Admin tak terdeteksi) — lalu **restart** dev server (env hanya dibaca saat start).
 4. Login pertama kali sebagai **Admin** sebelum user lain, agar Official Pod ter-init.
 5. Jika sesi macet: klik "Keluar", hapus cookie localhost, coba lagi.
 6. Kalau error spesifik muncul di kotak merah di Landing, laporkan teksnya.

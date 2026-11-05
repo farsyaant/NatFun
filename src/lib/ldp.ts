@@ -1,5 +1,6 @@
 import { getSolidDataset, getThingAll, getUrl } from "@inrupt/solid-client";
 import { fetch } from "@/lib/auth";
+import { fetchWithRetry } from "@/lib/fetchRetry";
 import { ns } from "@/lib/vocab";
 
 /** Daftar URL resource di dalam container (LDP ldp:contains). */
@@ -15,9 +16,21 @@ export async function listContainer(containerUrl: string): Promise<string[]> {
   return out;
 }
 
-/** Baca satu dokumen JSON-LD dari Pod. */
+/** Baca satu dokumen JSON-LD dari Pod.
+ *  Tahan kegagalan sementara (ECONNRESET/429/5xx) dengan retry — kegagalan
+ *  jaringan Nyata terjadi pada solidcommunity (bukti: ronde pengukuran).
+ *  404 → null segera (resource memang hilang, bukan gagal sementara). */
 export async function readJson<T>(url: string): Promise<T | null> {
-  const res = await fetch(url, { headers: { Accept: "application/ld+json, application/json" } });
+  let res: Response;
+  try {
+    res = await fetchWithRetry(
+      url,
+      { headers: { Accept: "application/ld+json, application/json" } },
+      { fetchImpl: fetch, maxAttempts: 3 },
+    );
+  } catch {
+    return null; // gagal menetap (mis. ECONNRESET terus) → null, bukan throw
+  }
   if (!res.ok) return null;
   return (await res.json()) as T;
 }
