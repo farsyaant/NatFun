@@ -1,0 +1,650 @@
+[
+  {
+    "localName": "Orangutan Kalimantan",
+    "scientificName": "Pongo pygmaeus",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Hominidae",
+    "province": "Kalimantan Tengah",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "CR",
+    "photo": "photos/01-orangutan-kalimantan.jpg",
+    "thumbPhoto": "photos/01-orangutan-kalimantan-thumb.jpg",
+    "photoSource": {
+      "title": "Pongo pygmaeus (orangutang).jpg",
+      "license": "CC BY 2.5",
+      "attribution": "Malene Thyssen",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Pongo_pygmaeus_%28orangutang%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Komodo",
+    "scientificName": "Varanus komodoensis",
+    "kingdom": "Animalia",
+    "taxonClass": "Reptilia",
+    "family": "Varanidae",
+    "province": "Nusa Tenggara Timur",
+    "habitat": "Sabana",
+    "conservationStatus": "EN",
+    "photo": "photos/02-komodo.jpg",
+    "thumbPhoto": "photos/02-komodo-thumb.jpg",
+    "photoSource": {
+      "title": "Komodo dragon Varanus komodoensis Ragunan Zoo 2.JPG",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Midori",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Komodo_dragon_Varanus_komodoensis_Ragunan_Zoo_2.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Badak Jawa",
+    "scientificName": "Rhinoceros sondaicus",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Rhinocerotidae",
+    "province": "Jawa Barat",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "CR",
+    "photo": "photos/03-badak-jawa.jpg",
+    "thumbPhoto": "photos/03-badak-jawa-thumb.jpg",
+    "photoSource": {
+      "title": "Rhinoceros sondaicus in London Zoo.jpg",
+      "license": "Public domain",
+      "attribution": "T.Dixon. The Zoological Society of London",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Rhinoceros_sondaicus_in_London_Zoo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Harimau Sumatera",
+    "scientificName": "Panthera tigris sumatrae",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Felidae",
+    "province": "Sumatera Barat",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "CR",
+    "photo": "photos/04-harimau-sumatera.jpg",
+    "thumbPhoto": "photos/04-harimau-sumatera-thumb.jpg",
+    "photoSource": {
+      "title": "Panthera tigris sumatran subspecies.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Monika Betley",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Panthera_tigris_sumatran_subspecies.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Gajah Sumatera",
+    "scientificName": "Elephas maximus sumatranus",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Elephantidae",
+    "province": "Riau",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "CR",
+    "photo": "photos/05-gajah-sumatera.jpg",
+    "thumbPhoto": "photos/05-gajah-sumatera-thumb.jpg",
+    "photoSource": {
+      "title": "Mahout dan gajah menyemburkan air dari belalainya ke arah pohon, CRU Samponiet.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Hendrapictures",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Mahout_dan_gajah_menyemburkan_air_dari_belalainya_ke_arah_pohon%2C_CRU_Samponiet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Banteng",
+    "scientificName": "Bos javanicus",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Bovidae",
+    "province": "Jawa Timur",
+    "habitat": "Sabana",
+    "conservationStatus": "EN",
+    "photo": "photos/06-banteng.jpg",
+    "thumbPhoto": "photos/06-banteng-thumb.jpg",
+    "photoSource": {
+      "title": "Lightmatter wild cow.jpg",
+      "license": "CC BY 2.0",
+      "attribution": "Aaron Logan",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Lightmatter_wild_cow.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Babi Rusa",
+    "scientificName": "Babyrousa celebensis",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Suidae",
+    "province": "Sulawesi Utara",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "EN",
+    "photo": "photos/08-babi-rusa.jpg",
+    "thumbPhoto": "photos/08-babi-rusa-thumb.jpg",
+    "photoSource": {
+      "title": "Hirscheber1a.jpg",
+      "license": "CC BY-SA 2.0 de",
+      "attribution": "Masteraah at German Wikipedia",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Hirscheber1a.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Cendrawasih Kuning Besar",
+    "scientificName": "Paradisaea apoda",
+    "kingdom": "Animalia",
+    "taxonClass": "Aves",
+    "family": "Paradisaeidae",
+    "province": "Papua",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "LC",
+    "photo": "photos/09-cendrawasih-kuning-besar.jpg",
+    "thumbPhoto": "photos/09-cendrawasih-kuning-besar-thumb.jpg",
+    "photoSource": {
+      "title": "Paradisaea apoda -Bali Bird Park-6.jpg",
+      "license": "CC BY 2.0",
+      "attribution": "Andrea Lawardi",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Paradisaea_apoda_-Bali_Bird_Park-6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Jalak Bali",
+    "scientificName": "Leucopsar rothschildi",
+    "kingdom": "Animalia",
+    "taxonClass": "Aves",
+    "family": "Sturnidae",
+    "province": "Bali",
+    "habitat": "Mangrove",
+    "conservationStatus": "CR",
+    "photo": "photos/10-jalak-bali.jpg",
+    "thumbPhoto": "photos/10-jalak-bali-thumb.jpg",
+    "photoSource": {
+      "title": "Bali Mynah.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "en:User:Cburnett",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Bali_Mynah.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Elang Jawa",
+    "scientificName": "Nisaetus bartelsi",
+    "kingdom": "Animalia",
+    "taxonClass": "Aves",
+    "family": "Accipitridae",
+    "province": "Jawa Tengah",
+    "habitat": "Hutan Montane",
+    "conservationStatus": "EN",
+    "photo": "photos/11-elang-jawa.jpg",
+    "thumbPhoto": "photos/11-elang-jawa-thumb.jpg",
+    "photoSource": {
+      "title": "Elang Jawa Nisaetus bartelsi Bandung Zoo 2 cropped.jpg",
+      "license": "CC BY 3.0",
+      "attribution": "Midori",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/50/Elang_Jawa_Nisaetus_bartelsi_Bandung_Zoo_2_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Maleo",
+    "scientificName": "Macrocephalon maleo",
+    "kingdom": "Animalia",
+    "taxonClass": "Aves",
+    "family": "Megapodiidae",
+    "province": "Sulawesi Tengah",
+    "habitat": "Pesisir dan Pantai",
+    "conservationStatus": "EN",
+    "photo": "photos/12-maleo.jpg",
+    "thumbPhoto": "photos/12-maleo-thumb.jpg",
+    "photoSource": {
+      "title": "Maleo bird.PNG",
+      "license": "Public domain",
+      "attribution": "",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Maleo_bird.PNG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kakatua Jambul Kuning",
+    "scientificName": "Cacatua sulphurea",
+    "kingdom": "Animalia",
+    "taxonClass": "Aves",
+    "family": "Cacatuidae",
+    "province": "Nusa Tenggara Timur",
+    "habitat": "Sabana",
+    "conservationStatus": "CR",
+    "photo": "photos/13-kakatua-jambul-kuning.jpg",
+    "thumbPhoto": "photos/13-kakatua-jambul-kuning-thumb.jpg",
+    "photoSource": {
+      "title": "Cacatua sulphurea Yumemigasaki Zoo P6179408.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Kestrel",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Cacatua_sulphurea_Yumemigasaki_Zoo_P6179408.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Tarsius Sunda",
+    "scientificName": "Tarsius tarsier",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Tarsiidae",
+    "province": "Sulawesi Selatan",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "VU",
+    "photo": "photos/14-tarsius-sunda.jpg",
+    "thumbPhoto": "photos/14-tarsius-sunda-thumb.jpg",
+    "photoSource": {
+      "title": "Tarsius fuscus.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Jopparn",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Tarsius_fuscus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kuskus Beruang",
+    "scientificName": "Spilocuscus rufoniger",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Phalangeridae",
+    "province": "Papua",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "CR",
+    "photo": "photos/15-kuskus-beruang.jpg",
+    "thumbPhoto": "photos/15-kuskus-beruang-thumb.jpg",
+    "photoSource": {
+      "title": "Spilocuscus papuensis 37904569.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Micha Baum",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Spilocuscus_papuensis_37904569.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Ikan Arwana Timur",
+    "scientificName": "Scleropages formosus",
+    "kingdom": "Animalia",
+    "taxonClass": "Actinopterygii",
+    "family": "Osteoglossidae",
+    "province": "Kalimantan Barat",
+    "habitat": "Rawa dan Air Tawar",
+    "conservationStatus": "EN",
+    "photo": "photos/16-ikan-arwana-timur.jpg",
+    "thumbPhoto": "photos/16-ikan-arwana-timur-thumb.jpg",
+    "photoSource": {
+      "title": "Arowana.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Marcel Burkhard",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Arowana.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Hiu Karang Sirip Putih",
+    "scientificName": "Triaenodon obesus",
+    "kingdom": "Animalia",
+    "taxonClass": "Chondrichthyes",
+    "family": "Carcharhinidae",
+    "province": "Maluku",
+    "habitat": "Terumbu Karang dan Laut",
+    "conservationStatus": "VU",
+    "photo": "photos/17-hiu-karang-sirip-putih.jpg",
+    "thumbPhoto": "photos/17-hiu-karang-sirip-putih-thumb.jpg",
+    "photoSource": {
+      "title": "Whitetip-reef-shark.jpg",
+      "license": "Public domain",
+      "attribution": "Jan Derk",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Whitetip-reef-shark.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Penyu Sisik",
+    "scientificName": "Eretmochelys imbricata",
+    "kingdom": "Animalia",
+    "taxonClass": "Reptilia",
+    "family": "Cheloniidae",
+    "province": "Sulawesi Tenggara",
+    "habitat": "Terumbu Karang dan Laut",
+    "conservationStatus": "CR",
+    "photo": "photos/18-penyu-sisik.jpg",
+    "thumbPhoto": "photos/18-penyu-sisik-thumb.jpg",
+    "photoSource": {
+      "title": "Tortuga carey (Eretmochelys imbricata), parque nacional Ras Muhammad, Egipto, 2022-03-28, DD 56.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Diego Delso",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Tortuga_carey_%28Eretmochelys_imbricata%29%2C_parque_nacional_Ras_Muhammad%2C_Egipto%2C_2022-03-28%2C_DD_56.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kura-kura Emys",
+    "scientificName": "Orlitia borneensis",
+    "kingdom": "Animalia",
+    "taxonClass": "Reptilia",
+    "family": "Geoemydidae",
+    "province": "Kalimantan Selatan",
+    "habitat": "Rawa dan Air Tawar",
+    "conservationStatus": "EN",
+    "photo": "photos/19-kura-kura-emys.jpg",
+    "thumbPhoto": "photos/19-kura-kura-emys-thumb.jpg",
+    "photoSource": {
+      "title": "Orlitia borneensis.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Cowbongo",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Orlitia_borneensis.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kupu-kupu Ophrys Kupu",
+    "scientificName": "Troides amphrysus",
+    "kingdom": "Animalia",
+    "taxonClass": "Insecta",
+    "family": "Papilionidae",
+    "province": "Sumatera Utara",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "LC",
+    "photo": "photos/20-kupu-kupu-ophrys-kupu.jpg",
+    "thumbPhoto": "photos/20-kupu-kupu-ophrys-kupu-thumb.jpg",
+    "photoSource": {
+      "title": "Troides amphrysus.jpg",
+      "license": "Public domain",
+      "attribution": "Welter Schultes, Francisco / Klaus E. Fiedler",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Troides_amphrysus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Anoa Pegunungan",
+    "scientificName": "Bubalus quarlesi",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Bovidae",
+    "province": "Sulawesi Tengah",
+    "habitat": "Hutan Montane",
+    "conservationStatus": "EN",
+    "photo": "photos/07-anoa-pegunungan.jpg",
+    "thumbPhoto": "photos/07-anoa-pegunungan-thumb.jpg",
+    "photoSource": {
+      "title": "Lowland Anoa Drawing historic.jpg",
+      "license": "Public domain",
+      "attribution": "",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Lowland_Anoa_Drawing_historic.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kalong Pteropus",
+    "scientificName": "Pteropus vampyrus",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Pteropodidae",
+    "province": "Jawa Barat",
+    "habitat": "Mangrove",
+    "conservationStatus": "NT",
+    "photo": "photos/21-kalong-pteropus.jpg",
+    "thumbPhoto": "photos/21-kalong-pteropus-thumb.jpg",
+    "photoSource": {
+      "title": "Pteropus vampyrus1.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "user:Raul654",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Pteropus_vampyrus1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kancil Kecil",
+    "scientificName": "Tragulus kanchil",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Tragulidae",
+    "province": "Lampung",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "LC",
+    "photo": "photos/22-kancil-kecil.jpg",
+    "thumbPhoto": "photos/22-kancil-kecil-thumb.jpg",
+    "photoSource": {
+      "title": "Mural of lesser mouse-deer @ Melaka, August 2020.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "GerifalteDelSabana",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Mural_of_lesser_mouse-deer_%40_Melaka%2C_August_2020.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Lutung Jawa",
+    "scientificName": "Trachypithecus auratus",
+    "kingdom": "Animalia",
+    "taxonClass": "Mammalia",
+    "family": "Cercopithecidae",
+    "province": "Jawa Barat",
+    "habitat": "Hutan Montane",
+    "conservationStatus": "VU",
+    "photo": "photos/23-lutung-jawa.jpg",
+    "thumbPhoto": "photos/23-lutung-jawa-thumb.jpg",
+    "photoSource": {
+      "title": "Lutung Jawa (Trachypithecus auratus).jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Ghofar Ismail Putra",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Lutung_Jawa_%28Trachypithecus_auratus%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Bung Lonceng Borneo",
+    "scientificName": "Nepenthes rajah",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Nepenthaceae",
+    "province": "Kalimantan Timur",
+    "habitat": "Hutan Montane",
+    "conservationStatus": "EN",
+    "photo": "photos/24-bung-lonceng-borneo.jpg",
+    "thumbPhoto": "photos/24-bung-lonceng-borneo-thumb.jpg",
+    "photoSource": {
+      "title": "Nepenthes rajah.png",
+      "license": "Public domain",
+      "attribution": "",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Nepenthes_rajah.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Rafflesia Arnoldii",
+    "scientificName": "Rafflesia arnoldii",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Rafflesiaceae",
+    "province": "Bengkulu",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "CR",
+    "photo": "photos/25-rafflesia-arnoldii.jpg",
+    "thumbPhoto": "photos/25-rafflesia-arnoldii-thumb.jpg",
+    "photoSource": {
+      "title": "Rafflesia arnoldii and buds.JPG",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Raphaelhui (talk)",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Rafflesia_arnoldii_and_buds.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Bunga Bangkai Titan",
+    "scientificName": "Amorphophallus titanum",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Araceae",
+    "province": "Sumatera Barat",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "EN",
+    "photo": "photos/26-bunga-bangkai-titan.jpg",
+    "thumbPhoto": "photos/26-bunga-bangkai-titan-thumb.jpg",
+    "photoSource": {
+      "title": "Amorphophallus titanum (37606994472).jpg",
+      "license": "CC BY-SA 2.0",
+      "attribution": "Björn S...",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Amorphophallus_titanum_%2837606994472%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Anggrek Hitam Kalimantan",
+    "scientificName": "Coelogyne pandurata",
+    "kingdom": "Plantae",
+    "taxonClass": "Liliopsida",
+    "family": "Orchidaceae",
+    "province": "Kalimantan Timur",
+    "habitat": "Mangrove",
+    "conservationStatus": "LC",
+    "photo": "photos/27-anggrek-hitam-kalimantan.jpg",
+    "thumbPhoto": "photos/27-anggrek-hitam-kalimantan-thumb.jpg",
+    "photoSource": {
+      "title": "Coelogyne pandurata -Xenia 2-121 (1874).jpg",
+      "license": "Public domain",
+      "attribution": "Heinrich Gustav Reichenbach",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Coelogyne_pandurata_-Xenia_2-121_%281874%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Matahari Gunung",
+    "scientificName": "Edelweiss Jawa",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Asteraceae",
+    "province": "Jawa Timur",
+    "habitat": "Hutan Montane",
+    "conservationStatus": "NT",
+    "photo": "photos/28-matahari-gunung.jpg",
+    "thumbPhoto": "photos/28-matahari-gunung-thumb.jpg",
+    "photoSource": {
+      "title": "Javanese Edelwiss at Mount Bromo.jpg",
+      "license": "CC BY 2.0",
+      "attribution": "Alex Lapuerta",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Javanese_Edelwiss_at_Mount_Bromo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kantong Semar Sumatera",
+    "scientificName": "Nepenthes sumatrana",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Nepenthaceae",
+    "province": "Sumatera Selatan",
+    "habitat": "Rawa dan Air Tawar",
+    "conservationStatus": "VU",
+    "photo": "photos/29-kantong-semar-sumatera.jpg",
+    "thumbPhoto": "photos/29-kantong-semar-sumatera-thumb.jpg",
+    "photoSource": {
+      "title": "Nepenthes sumatrana1.jpg",
+      "license": "CC BY 2.0",
+      "attribution": "ma_suska",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Nepenthes_sumatrana1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Kapur Naga",
+    "scientificName": "Shorea javanica",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Dipterocarpaceae",
+    "province": "Kepulauan Bangka Belitung",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "EN",
+    "photo": "photos/30-kapur-naga.jpg",
+    "thumbPhoto": "photos/30-kapur-naga-thumb.jpg",
+    "photoSource": {
+      "title": "Dipterocarpaceae in Caringin.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Afrogindahood",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Dipterocarpaceae_in_Caringin.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Mangrove Bakau",
+    "scientificName": "Rhizophora mangle",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Rhizophoraceae",
+    "province": "Kepulauan Riau",
+    "habitat": "Mangrove",
+    "conservationStatus": "LC",
+    "photo": "photos/31-mangrove-bakau.jpg",
+    "thumbPhoto": "photos/31-mangrove-bakau-thumb.jpg",
+    "photoSource": {
+      "title": "Avicennia germinans & Rhizophora mangle.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Ianaré Sévi",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Avicennia_germinans_%26_Rhizophora_mangle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Beringin Laut",
+    "scientificName": "Casuarina equisetifolia",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Casuarinaceae",
+    "province": "Banten",
+    "habitat": "Pesisir dan Pantai",
+    "conservationStatus": "LC",
+    "photo": "photos/32-beringin-laut.jpg",
+    "thumbPhoto": "photos/32-beringin-laut-thumb.jpg",
+    "photoSource": {
+      "title": "Casuarina equisetifolia leaves.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Eric Guinther",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Casuarina_equisetifolia_leaves.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Bunga Kantan",
+    "scientificName": "Etlingera elatior",
+    "kingdom": "Plantae",
+    "taxonClass": "Liliopsida",
+    "family": "Zingiberaceae",
+    "province": "Aceh",
+    "habitat": "Hutan Hujan Tropis",
+    "conservationStatus": "LC",
+    "photo": "photos/33-bunga-kantan.jpg",
+    "thumbPhoto": "photos/33-bunga-kantan-thumb.jpg",
+    "photoSource": {
+      "title": "Etlingera elatior dsc03700.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "David Monniaux",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/Etlingera_elatior_dsc03700.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Cendana Timor",
+    "scientificName": "Santalum album",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Santalaceae",
+    "province": "Nusa Tenggara Timur",
+    "habitat": "Sabana",
+    "conservationStatus": "VU",
+    "photo": "photos/34-cendana-timor.jpg",
+    "thumbPhoto": "photos/34-cendana-timor-thumb.jpg",
+    "photoSource": {
+      "title": "Santalum album - Köhler–s Medizinal-Pflanzen-128.jpg",
+      "license": "Public domain",
+      "attribution": "Franz Eugen Köhler, Köhler's Medizinal-Pflanzen",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Santalum_album_-_K%C3%B6hler%E2%80%93s_Medizinal-Pflanzen-128.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Palem Borassus",
+    "scientificName": "Borassus flabellifer",
+    "kingdom": "Plantae",
+    "taxonClass": "Liliopsida",
+    "family": "Arecaceae",
+    "province": "Nusa Tenggara Barat",
+    "habitat": "Sabana",
+    "conservationStatus": "LC",
+    "photo": "photos/35-palem-borassus.jpg",
+    "thumbPhoto": "photos/35-palem-borassus-thumb.jpg",
+    "photoSource": {
+      "title": "Borassus flabellifer.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Franz Xaver",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Borassus_flabellifer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  {
+    "localName": "Terubuk Melaleuca",
+    "scientificName": "Melaleuca leucadendra",
+    "kingdom": "Plantae",
+    "taxonClass": "Magnoliopsida",
+    "family": "Myrtaceae",
+    "province": "Papua Barat",
+    "habitat": "Rawa dan Air Tawar",
+    "conservationStatus": "LC",
+    "photo": "photos/36-terubuk-melaleuca.jpg",
+    "thumbPhoto": "photos/36-terubuk-melaleuca-thumb.jpg",
+    "photoSource": {
+      "title": "Melaleuca leucadendra-foliage.jpg",
+      "license": "Public domain",
+      "attribution": "Eug",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Melaleuca_leucadendra-foliage.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  }
+]

@@ -1,0 +1,7 @@
+# Community Solid Server untuk development & demo (provider kedua, WAC default)
+# Jalankan: docker build -f Dockerfile.css -t natfun-css . && docker run -p 3000:3000 -v ./css-data:/data natfun-css
+FROM solidproject/community-server:latest
+
+EXPOSE 3000
+# Konfigurasi bawaan berbasis file, WAC, dan registrasi akun terbuka.
+CMD ["node", "bin/server.js", "-c", "config/config-file.json", "-f", "/data", "-p", "3000", "--baseUrl", "http://localhost:3000/"]
