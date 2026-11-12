@@ -181,11 +181,13 @@ for (const s of seed) {
       conservationStatus: s.conservationStatus,
       thumbnailUrl: haveThumb ? thumbUrl : photoUrl,
       approvedAt: now,
+      endemic: s.endemic,
     });
   } else {
     // entri lama: perbarui metadata (mis. thumbnail kini terpisah)
     const item = index.items.find((e) => e.observationUrl === obsUrl);
     item.thumbnailUrl = haveThumb ? thumbUrl : photoUrl;
+    item.endemic = s.endemic;
   }
 
   // C2 (backfill): container interaksi per-observasi dibuat oleh pemilik

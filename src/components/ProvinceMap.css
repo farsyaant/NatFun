@@ -1,0 +1,323 @@
+/* Disalin dari mockup; di-scope ke .pm-root agar tidak bentrok dengan Tailwind/aplikasi. */
+.pm-root {
+  --bg: #f6f5f1;
+  --fg: #1f2421;
+  --mut: #6a706b;
+  --card: #fff;
+  --line: #e2e0d8;
+  --cr: #c0392b;
+  --en: #d9731a;
+  --vu: #b58b00
+}
+
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) .pm-root {
+    --bg: #17191a;
+    --fg: #ecece8;
+    --mut: #9aa09b;
+    --card: #232625;
+    --line: #383c3a;
+    --cr: #ff7b6b;
+    --en: #ffa25c;
+    --vu: #e8c14a
+  }
+}
+
+[data-theme="dark"] .pm-root {
+  --bg: #17191a;
+  --fg: #ecece8;
+  --mut: #9aa09b;
+  --card: #232625;
+  --line: #383c3a;
+  --cr: #ff7b6b;
+  --en: #ffa25c;
+  --vu: #e8c14a
+}
+
+.pm-stage {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 8px;
+  overflow: hidden;
+  color: var(--fg);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
+}
+
+.pm-stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: manipulation
+}
+
+.pm-prov {
+  stroke: #808080;
+  stroke-width: .5;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: opacity .15s
+}
+
+.pm-stage svg.on .pm-prov {
+  opacity: .7
+}
+
+.pm-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 7;
+  pointer-events: stroke;
+  cursor: pointer
+}
+
+.pm-lift {
+  pointer-events: none
+}
+
+.pm-sh {
+  fill: #000;
+  opacity: .3;
+  stroke: none
+}
+
+.pm-up {
+  stroke: #3a3a3a;
+  stroke-width: .8;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .45)) saturate(1.5) brightness(.97);
+  animation: pm-up .16s ease-out forwards
+}
+
+@keyframes pm-up {
+  from {
+    transform: translateY(0)
+  }
+
+  to {
+    transform: translateY(-3px)
+  }
+}
+
+/* TAMBAHAN (tidak ada di mockup): penanda provinsi terpilih untuk filter */
+.pm-stage svg.has-sel .pm-prov {
+  opacity: .45
+}
+
+.pm-stage svg.has-sel.on .pm-prov {
+  opacity: .45
+}
+
+.pm-stage svg.has-sel .pm-prov.pm-is-sel {
+  opacity: 1
+}
+
+.pm-selring {
+  fill: none;
+  stroke: var(--fg);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  pointer-events: none
+}
+
+.pm-tip {
+  position: absolute;
+  z-index: 5;
+  width: 250px;
+  background: var(--card);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+  padding: 12px 14px;
+  font-size: 13px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .12s, transform .12s
+}
+
+.pm-tip.show {
+  opacity: 1;
+  transform: none
+}
+
+.pm-tip h2 {
+  font-size: 15px;
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700
+}
+
+.pm-sw {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, .3);
+  flex: none
+}
+
+.pm-k {
+  color: var(--mut);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin: 8px 0 2px
+}
+
+.pm-big {
+  font-size: 20px;
+  font-weight: 650
+}
+
+.pm-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px
+}
+
+.pm-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 4px 0;
+  background: var(--line)
+}
+
+.pm-bar i {
+  display: block;
+  background: #4a8f6a
+}
+
+.pm-bar i+i {
+  background: #6a8fd0
+}
+
+.pm-lg {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mut);
+  font-size: 12px
+}
+
+.pm-bd {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: 650;
+  border: 1px solid currentColor
+}
+
+.pm-CR {
+  color: var(--cr)
+}
+
+.pm-EN {
+  color: var(--en)
+}
+
+.pm-VU {
+  color: var(--vu)
+}
+
+.pm-tip em {
+  color: var(--mut)
+}
+
+.pm-foot {
+  margin-top: 10px;
+  color: var(--mut);
+  font-size: 12px
+}
+
+/* ===== Preview statis + tombol perbesar + modal layar penuh ===== */
+.pm-preview svg {
+  pointer-events: none
+}
+
+.pm-ps {
+  stroke: #808080;
+  stroke-width: .5;
+  stroke-linejoin: round
+}
+
+.pm-preview svg.has-sel .pm-ps {
+  opacity: .45
+}
+
+.pm-preview svg.has-sel .pm-ps.pm-is-sel {
+  opacity: 1
+}
+
+.pm-expand,
+.pm-close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--fg);
+  cursor: pointer;
+  opacity: .92;
+  transition: background .12s, opacity .12s
+}
+
+.pm-expand:hover,
+.pm-close:hover {
+  background: var(--bg);
+  opacity: 1
+}
+
+.pm-expand:focus-visible,
+.pm-close:focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px
+}
+
+.pm-expand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2
+}
+
+.pm-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  box-sizing: border-box;
+  padding: calc(56px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px))
+}
+
+.pm-close {
+  position: absolute;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  right: 12px;
+  width: 36px;
+  height: 36px
+}
+
+/* lebar menyesuaikan tinggi layar agar peta (rasio 752:282) muat tanpa scroll */
+.pm-modal-body {
+  width: min(100%, calc((100vh - 140px) * 2.6));
+  min-width: min(100%, 320px)
+}
+
+@supports (height:100dvh) {
+  .pm-modal-body {
+    width: min(100%, calc((100dvh - 140px) * 2.6));
+    min-width: min(100%, 320px)
+  }
+}

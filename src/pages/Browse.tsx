@@ -7,6 +7,8 @@ import StatusBadge from "@/components/StatusBadge";
 import ProvinceMap from "@/components/ProvinceMap";
 import AuthImage from "@/components/AuthImage";
 import type { CatalogEntry } from "@/lib/vocab";
+import { buildProvinceDetails } from "@/lib/provinceDetails";
+
 
 export default function Browse() {
   const { state, reloadCatalog } = useAuth();
@@ -86,6 +88,8 @@ export default function Browse() {
     for (const e of entries) c[e.province] = (c[e.province] ?? 0) + 1;
     return c;
   }, [entries]);
+
+  const provinceDetails = useMemo(() => buildProvinceDetails(entries), [entries]);
 
   const classes = useMemo(
     () => [...new Set(entries.map((e) => e.taxonClass).filter(Boolean))].sort(),
@@ -181,7 +185,7 @@ export default function Browse() {
 
         <div className="rounded-xl bg-white p-4 shadow-sm">
           <p className="mb-2 text-sm font-semibold">Peta Provinsi</p>
-          <ProvinceMap counts={counts} selected={province} onSelect={setProvince} />
+          <ProvinceMap counts={counts} details={provinceDetails} selected={province} onSelect={setProvince} />
         </div>
       </aside>
 

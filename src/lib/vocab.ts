@@ -85,6 +85,7 @@ export interface CatalogEntry {
   conservationStatus: string;
   thumbnailUrl: string;
   approvedAt: string;
+  endemic?: boolean;
 }
 
 export interface CatalogIndex {
